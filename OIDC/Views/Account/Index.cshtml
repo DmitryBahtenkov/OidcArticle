@@ -1,0 +1,12 @@
+﻿@model List<OpenIdConnectScheme>
+
+<h2>Вход на сайт</h2>
+
+@foreach (var scheme in Model)
+{
+    <form asp-action="Login" asp-route-scheme="oidc-@scheme.Id" asp-controller="Account" asp-anti-forgery="true">
+        <div class="form-group">
+            <input type="submit" value="Войти с помощью keycloak - @scheme.ClientId" class="btn btn-outline-dark"/>
+        </div>
+    </form>
+}

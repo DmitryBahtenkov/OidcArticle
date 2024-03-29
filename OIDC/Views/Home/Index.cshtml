@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    @if (User.Identity?.IsAuthenticated is true)
+    {
+        <h1 class="display-6">Вы авторизованы!</h1>
+        <a asp-controller="Account" asp-action="Index">Выйти</a>
+        <ul class="list-unstyled">
+            @foreach (var claim in User.Claims)
+            {
+                <li>@claim.Type: @claim.Value</li>
+            }
+        </ul>   
+    }
+    @if(User.Identity?.IsAuthenticated is not true)
+    {
+        <h1 class="display-5">Вы не авторизованы!</h1>
+        <a asp-controller="Account" asp-action="Index">Войти</a>
+    }
+</div>
